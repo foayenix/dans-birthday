@@ -774,11 +774,13 @@
     });
   });
 
-  // === SUBMIT VIA EMAIL ===
-  // ⚠️ REPLACE THIS EMAIL ADDRESS WITH THE ACTUAL ONE
-  const RSVP_EMAIL = 'REPLACE_WITH_EMAIL@example.com';
+  // === SUBMIT VIA FORMSPREE ===
+  // 1. Go to https://formspree.io and sign up (free)
+  // 2. Create a new form — set the email to foayenix@gmail.com
+  // 3. Copy your form ID (e.g. "xpzgkwjb") and paste it below
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
 
-  function submitRSVP() {
+  async function submitRSVP() {
     const name = document.getElementById('guestName').value.trim();
     if (!name) {
       document.getElementById('guestName').style.borderColor = 'var(--red-bright)';
@@ -794,37 +796,34 @@
     btn.classList.add('sending');
     btn.textContent = 'SENDING...';
 
-    // Build email
-    const subject = encodeURIComponent(
-      `RSVP: Dienye's 24th – ${name} ${attending === 'yes' ? '✓ Attending' : '✗ Declined'}`
-    );
+    const payload = {
+      name: name,
+      attending: attending === 'yes' ? 'Yes – Joyfully Accepts' : 'No – Regretfully Declines',
+      dietary: attending === 'yes' ? (dietary === 'none' ? 'None' : dietary) : 'N/A',
+      message: message || '(none)',
+      _subject: `RSVP: Dienye's 24th – ${name} ${attending === 'yes' ? '✓ Attending' : '✗ Declined'}`
+    };
 
-    let body = `RSVP for Dienye Daniel Hart's 24th Birthday Dinner\n`;
-    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-    body += `Name: ${name}\n`;
-    body += `Attending: ${attending === 'yes' ? 'Yes – Joyfully Accepts' : 'No – Regretfully Declines'}\n`;
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-    if (attending === 'yes') {
-      body += `Dietary Requirements: ${dietary === 'none' ? 'None' : dietary}\n`;
+      if (res.ok) {
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successMsg').classList.add('visible');
+      } else {
+        btn.classList.remove('sending');
+        btn.textContent = 'Confirm Attendance';
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      btn.classList.remove('sending');
+      btn.textContent = 'Confirm Attendance';
+      alert('Network error. Please check your connection and try again.');
     }
-
-    if (message) {
-      body += `\nMessage for Dienye:\n"${message}"\n`;
-    }
-
-    body += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `Sent from the RSVP page`;
-
-    const mailtoLink = `mailto:${RSVP_EMAIL}?subject=${subject}&body=${encodeURIComponent(body)}`;
-
-    // Open mail client
-    window.location.href = mailtoLink;
-
-    // Show success after brief delay
-    setTimeout(() => {
-      document.getElementById('formContent').style.display = 'none';
-      document.getElementById('successMsg').classList.add('visible');
-    }, 1000);
   }
 
   // Reset border on input
