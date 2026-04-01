@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dienye Daniel Hart | 24th Birthday Dinner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0a0a;
+    --bg-card: #111111;
+    --gold: #c9a84c;
+    --gold-light: #e8d48b;
+    --gold-dark: #8a6d2b;
+    --red: #8b1a1a;
+    --red-bright: #c0392b;
+    --white: #f5f0e8;
+    --white-muted: #b8b0a0;
+    --border-gold: rgba(201, 168, 76, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient glow effects */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(139, 26, 26, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* === CROWN & HEADER === */
+  .crown-section {
+    text-align: center;
+    padding-top: 40px;
+    animation: fadeDown 1s ease-out;
+  }
+
+  .crown-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.5));
+  }
+
+  .invited-text {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .celebrate-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--white-muted);
+    margin-bottom: 24px;
+  }
+
+  /* === GOLD DIVIDER === */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px 0;
+  }
+
+  .gold-divider.thick {
+    height: 2px;
+    box-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+  }
+
+  /* === NAME === */
+  .name-section {
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeUp 1s ease-out 0.2s both;
+  }
+
+  .guest-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 7vw, 48px);
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
+    line-height: 1.2;
+  }
+
+  .age-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .age-at {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--gold);
+  }
+
+  .age-number {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 12vw, 80px);
+    font-weight: 700;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(201, 168, 76, 0.3));
+  }
+
+  /* === EVENT TITLE === */
+  .event-title-section {
+    text-align: center;
+    padding: 8px 0 24px;
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+
+  .event-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(28px, 7vw, 42px);
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .event-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--white-muted);
+    letter-spacing: 1px;
+  }
+
+  /* === DETAILS CARD === */
+  .details-card {
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(20, 18, 14, 0.9));
+    border: 1px solid var(--border-gold);
+    border-radius: 2px;
+    padding: 32px 28px;
+    margin: 24px 0;
+    position: relative;
+    animation: fadeUp 1s ease-out 0.6s both;
+  }
+
+  .details-card::before,
+  .details-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+
+  .details-card::before {
+    top: 8px; left: 8px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .details-card::after {
+    bottom: 8px; right: 8px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .detail-row + .detail-row {
+    border-top: 1px solid rgba(201, 168, 76, 0.1);
+  }
+
+  .detail-icon {
+    font-size: 20px;
+    min-width: 28px;
+    text-align: center;
+    padding-top: 2px;
+  }
+
+  .detail-label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .detail-value {
+    font-size: 17px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .detail-value a {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    transition: border-color 0.3s;
+  }
+
+  .detail-value a:hover {
+    border-color: var(--gold);
+  }
+
+  /* === DRESS CODE === */
+  .dresscode-section {
+    text-align: center;
+    padding: 24px 0;
+    animation: fadeUp 1s ease-out 0.8s both;
+  }
+
+  .dresscode-label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .dresscode-sub {
+    font-style: italic;
+    color: var(--white-muted);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .colour-swatches {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .swatch-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(201, 168, 76, 0.4);
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  }
+
+  .swatch-circle.red { background: radial-gradient(circle at 35% 35%, #d44, #8b1a1a); }
+  .swatch-circle.black { background: radial-gradient(circle at 35% 35%, #444, #111); }
+  .swatch-circle.gold-sw { background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold-dark)); }
+  .swatch-circle.white-sw { background: radial-gradient(circle at 35% 35%, #fff, #ccc); }
+
+  .swatch-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--white-muted);
+  }
+
+  /* === RSVP FORM === */
+  .rsvp-section {
+    margin-top: 32px;
+    animation: fadeUp 1s ease-out 1s both;
+  }
+
+  .rsvp-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .rsvp-title {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .rsvp-deadline {
+    font-style: italic;
+    color: var(--white-muted);
+    font-size: 15px;
+  }
+
+  .rsvp-deadline strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .form-card {
+    background: rgba(17, 17, 17, 0.8);
+    border: 1px solid var(--border-gold);
+    border-radius: 2px;
+    padding: 32px 24px;
+    position: relative;
+  }
+
+  .form-card::before,
+  .form-card::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+
+  .form-card::before { top: 6px; left: 6px; border-width: 1px 0 0 1px; }
+  .form-card::after { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    padding: 12px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--white);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(201, 168, 76, 0.15);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: rgba(184, 176, 160, 0.5);
+    font-style: italic;
+  }
+
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+  }
+
+  .form-select option {
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  /* Radio group */
+  .radio-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .radio-option {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .radio-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--white-muted);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .radio-option input:checked + .radio-label {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201, 168, 76, 0.08);
+  }
+
+  .radio-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .radio-option input:checked + .radio-label .radio-dot {
+    border-color: var(--gold);
+  }
+
+  .radio-option input:checked + .radio-label .radio-dot::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* Submit button */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 32px;
+    margin-top: 28px;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px rgba(201, 168, 76, 0.4);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-btn.sending {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Success state */
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .success-message.visible {
+    display: block;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  .success-check {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .success-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .success-text {
+    color: var(--white-muted);
+    font-size: 16px;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    animation: fadeUp 1s ease-out 1.2s both;
+  }
+
+  .footer-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(20px, 5vw, 28px);
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  /* === SPARKLE PARTICLES === */
+  .sparkles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: sparkleFloat linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes sparkleFloat {
+    0% { opacity: 0; transform: translateY(100vh) scale(0); }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .page-wrapper { padding: 12px 12px 40px; }
+    .details-card { padding: 24px 18px; }
+    .form-card { padding: 24px 16px; }
+    .radio-group { flex-direction: column; gap: 10px; }
+    .radio-label { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient sparkles -->
+<div class="sparkles" id="sparkles"></div>
+
+<div class="page-wrapper">
+
+  <!-- Crown & Invitation Header -->
+  <div class="crown-section">
+    <span class="crown-icon">👑</span>
+    <div class="invited-text">You Are Invited</div>
+    <div class="celebrate-text">to celebrate</div>
+  </div>
+
+  <div class="gold-divider thick"></div>
+
+  <!-- Name & Age -->
+  <div class="name-section">
+    <div class="guest-name">Dienye Daniel Hart</div>
+    <div class="age-badge">
+      <span class="age-at">@</span>
+      <span class="age-number">24</span>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <!-- Event Title -->
+  <div class="event-title-section">
+    <div class="event-title">An Intimate Birthday Dinner</div>
+    <div class="event-tagline">A night of elegance, good wine, and meaningful company</div>
+  </div>
+
+  <!-- Event Details -->
+  <div class="details-card">
+    <div class="detail-row">
+      <span class="detail-icon">📅</span>
+      <div>
+        <div class="detail-label">Date</div>
+        <div class="detail-value">Wednesday, 15th April 2026</div>
+      </div>
+    </div>
+    <div class="detail-row">
+      <span class="detail-icon">🕖</span>
+      <div>
+        <div class="detail-label">Time</div>
+        <div class="detail-value">7:00 PM – 11:00 PM</div>
+      </div>
+    </div>
+    <div class="detail-row">
+      <span class="detail-icon">📍</span>
+      <div>
+        <div class="detail-label">Venue</div>
+        <div class="detail-value">
+          Crescent Moon Wine Bar<br>
+          <a href="https://maps.google.com/?q=67+Crouch+Street+Colchester+CO3+3EY" target="_blank" rel="noopener">67 Crouch Street, Colchester CO3 3EY</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dress Code -->
+  <div class="dresscode-section">
+    <div class="dresscode-label">Dress Code</div>
+    <div class="dresscode-sub">Formal Wear — No Tracksuits, Trainers or Casual Attire</div>
+    <div class="dresscode-sub" style="margin-top:-8px;">Theme Colours</div>
+    <div class="colour-swatches">
+      <div class="swatch">
+        <div class="swatch-circle red"></div>
+        <span class="swatch-name">Red</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle black"></div>
+        <span class="swatch-name">Black</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle gold-sw"></div>
+        <span class="swatch-name">Gold</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle white-sw"></div>
+        <span class="swatch-name">White</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gold-divider thick"></div>
+
+  <!-- RSVP Form -->
+  <div class="rsvp-section">
+    <div class="rsvp-header">
+      <div class="rsvp-title">RSVP</div>
+      <div class="rsvp-deadline">Kindly confirm your attendance on or before <strong>7th April 2026</strong></div>
+    </div>
+
+    <div class="form-card">
+      <div id="formContent">
+        <div class="form-group">
+          <label class="form-label" for="guestName">Full Name</label>
+          <input type="text" id="guestName" class="form-input" placeholder="Your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Will You Be Attending?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attending" value="yes" checked>
+              <span class="radio-label">
+                <span class="radio-dot"></span>
+                Joyfully Accepts
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attending" value="no">
+              <span class="radio-label">
+                <span class="radio-dot"></span>
+                Regretfully Declines
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div id="attendingDetails">
+          <div class="form-group">
+            <label class="form-label" for="dietary">Dietary Requirements</label>
+            <select id="dietary" class="form-select">
+              <option value="none">No special requirements</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="halal">Halal</option>
+              <option value="gluten-free">Gluten Free</option>
+              <option value="other">Other (please specify below)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Message for Dienye <span style="color:var(--white-muted);font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:13px;">(optional)</span></label>
+          <textarea id="message" class="form-textarea" placeholder="A birthday wish or note..."></textarea>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="submitRSVP()">
+          Confirm Attendance
+        </button>
+      </div>
+
+      <div class="success-message" id="successMsg">
+        <div class="success-check">✨</div>
+        <div class="success-title">Thank You!</div>
+        <div class="success-text">Your RSVP has been received.<br>We look forward to celebrating with you.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gold-divider" style="margin-top:36px;"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">An evening of class, culture, and celebration awaits</div>
+  </div>
+
+</div>
+
+<script>
+  // === SPARKLE PARTICLES ===
+  (function() {
+    const container = document.getElementById('sparkles');
+    const count = 20;
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.animationDuration = (8 + Math.random() * 12) + 's';
+      s.style.animationDelay = (Math.random() * 15) + 's';
+      s.style.width = s.style.height = (1 + Math.random() * 2) + 'px';
+      container.appendChild(s);
+    }
+  })();
+
+  // === FORM LOGIC ===
+
+  // Show/hide attending details
+  document.querySelectorAll('input[name="attending"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.getElementById('attendingDetails').style.display =
+        this.value === 'yes' ? 'block' : 'none';
+    });
+  });
+
+  // === SUBMIT VIA EMAIL ===
+  // ⚠️ REPLACE THIS EMAIL ADDRESS WITH THE ACTUAL ONE
+  const RSVP_EMAIL = 'REPLACE_WITH_EMAIL@example.com';
+
+  function submitRSVP() {
+    const name = document.getElementById('guestName').value.trim();
+    if (!name) {
+      document.getElementById('guestName').style.borderColor = 'var(--red-bright)';
+      document.getElementById('guestName').focus();
+      return;
+    }
+
+    const attending = document.querySelector('input[name="attending"]:checked').value;
+    const dietary = document.getElementById('dietary')?.value || 'none';
+    const message = document.getElementById('message').value.trim();
+
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('sending');
+    btn.textContent = 'SENDING...';
+
+    // Build email
+    const subject = encodeURIComponent(
+      `RSVP: Dienye's 24th – ${name} ${attending === 'yes' ? '✓ Attending' : '✗ Declined'}`
+    );
+
+    let body = `RSVP for Dienye Daniel Hart's 24th Birthday Dinner\n`;
+    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    body += `Name: ${name}\n`;
+    body += `Attending: ${attending === 'yes' ? 'Yes – Joyfully Accepts' : 'No – Regretfully Declines'}\n`;
+
+    if (attending === 'yes') {
+      body += `Dietary Requirements: ${dietary === 'none' ? 'None' : dietary}\n`;
+    }
+
+    if (message) {
+      body += `\nMessage for Dienye:\n"${message}"\n`;
+    }
+
+    body += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+    body += `Sent from the RSVP page`;
+
+    const mailtoLink = `mailto:${RSVP_EMAIL}?subject=${subject}&body=${encodeURIComponent(body)}`;
+
+    // Open mail client
+    window.location.href = mailtoLink;
+
+    // Show success after brief delay
+    setTimeout(() => {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successMsg').classList.add('visible');
+    }, 1000);
+  }
+
+  // Reset border on input
+  document.getElementById('guestName').addEventListener('input', function() {
+    this.style.borderColor = '';
+  });
+</script>
+
+</body>
+</html>
